@@ -26,6 +26,7 @@ public class SpawnManager : MonoBehaviour
     IEnumerator EnemySpawner(){
         while(true)
         {
+            Debug.Log("TRYING TO SPAWN ENEMY");
             if (spawnedEnemies < spawnAmount)
             {
                 Debug.Log("Enemy spawned.");
@@ -57,7 +58,7 @@ public class SpawnManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Conditions not met for new level.");
+            //Debug.Log("Conditions not met for new level.");
         }
     }
 }
