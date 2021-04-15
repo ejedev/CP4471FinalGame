@@ -9,9 +9,9 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject placeHolderEnemy;
     public Text levelValue;
-    private int currentLevel;
-    private int spawnAmount;
-    private int spawnedEnemies;
+    private int currentLevel = 1;
+    private int spawnAmount = 1;
+    private int spawnedEnemies = 0;
     
     //All locations are X,Y
     float[,] possibleSpawnLocations = new float[,] {{4.5f,3},{-4.5f,3},{7,3},{-7,3},{6,2},{-6,2},{3,2},{-3,2},{4,6.83f},{-4,6.83f}};
@@ -19,9 +19,6 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentLevel = 1;
-        spawnAmount = currentLevel;
-        spawnedEnemies = 0;
         levelValue.text = currentLevel.ToString();
         StartCoroutine(EnemySpawner());
     }
@@ -31,14 +28,19 @@ public class SpawnManager : MonoBehaviour
         {
             if (spawnedEnemies < spawnAmount)
             {
-                spawnedEnemies += 1;
+                Debug.Log("Enemy spawned.");
                 int selectedPostion = Random.Range(0, (possibleSpawnLocations.Length - 1) / 2);
                 Debug.Log(selectedPostion + " ," + possibleSpawnLocations.Length);
                 Instantiate(placeHolderEnemy,
                     new Vector3(possibleSpawnLocations[selectedPostion, 0], possibleSpawnLocations[selectedPostion, 1],
                         0), Quaternion.identity);
-                yield return new WaitForSeconds(5);
+                spawnedEnemies += 1;
             }
+            else
+            {
+                Debug.Log("Enemy not spawned.");
+            }
+            yield return new WaitForSeconds(5);
         }
     }
 
@@ -47,10 +49,15 @@ public class SpawnManager : MonoBehaviour
     {
         if (spawnedEnemies == spawnAmount && GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
         {
+            Debug.Log("Conditions met for new level.");
             currentLevel += 1;
             spawnedEnemies = 0;
             spawnAmount = currentLevel;
             levelValue.text = currentLevel.ToString();
+        }
+        else
+        {
+            Debug.Log("Conditions not met for new level.");
         }
     }
 }
