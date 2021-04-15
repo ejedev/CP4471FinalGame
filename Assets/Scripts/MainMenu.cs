@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
     {
         if (isStart)
         {
-            SceneManager.LoadScene("Defend");
+            SceneManager.LoadScene(1);
         }
 
         if (isQuit)
