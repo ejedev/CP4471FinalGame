@@ -4,29 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+public class SettingsMenu : MonoBehaviour
 {
-    public Boolean isStart;
-
-    public Boolean isQuit;
-
-    public Boolean isOptions;
+    public Boolean isBack;
 
     private void OnMouseUp()
     {
-        if (isStart)
+        if (isBack)
         {
-            SceneManager.LoadScene(1);
-        }
-
-        if (isOptions)
-        {
-            SceneManager.LoadScene(2);
-        }
-
-        if (isQuit)
-        {
-            Application.Quit();
+            SceneManager.LoadScene(0);
         }
     }
 
