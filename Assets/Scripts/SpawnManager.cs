@@ -17,6 +17,8 @@ public class SpawnManager : MonoBehaviour
     public int waveNumber = 1;
     public float chickenCost = 0.5f;
     public float gunmanCost = 2.0f;
+    public float minDist = 2.0f;
+
 
     private Boolean finishedSpawning = false;
     //TODO add budget & pick of prefabs
@@ -71,7 +73,7 @@ public class SpawnManager : MonoBehaviour
 
     //must only be called AFTER platforms are created
     //gets list of platforms and generates a spawn location (+0.5 y) above a platform, away from the player
-    private Vector3 GenerateSpawnPosition()
+    /*private Vector3 GenerateSpawnPosition()
     {
         GameObject[] platformArray = GameObject.FindGameObjectsWithTag("Platform"); 
         bool spawnPositionValid = false;
@@ -91,6 +93,35 @@ public class SpawnManager : MonoBehaviour
             if (!(spawnPosX - player.transform.position.x <= 1.5) && !(platformUpperEdgePosY - player.transform.position.y <= 1.5))
             {
                 generatedSpawnPosition = new Vector3(spawnPosX, platformUpperEdgePosY + 0.2f, 0);
+                spawnPositionValid = true;
+
+            } else {
+                spawnPositionValid = false;
+            }
+        }
+
+        return generatedSpawnPosition;
+    }*/
+    private Vector3 GenerateSpawnPosition()
+    {
+        GameObject[] platformArray = GameObject.FindGameObjectsWithTag("Platform"); 
+        bool spawnPositionValid = false;
+        Vector3 generatedSpawnPosition = new Vector3(0, 0, 0); //default
+
+        while (spawnPositionValid == false)
+        {
+            GameObject platform = platformArray[Random.Range(0, platformArray.Length)]; //get random platform
+            Vector3 boxSize = platform.GetComponent<BoxCollider>().bounds.size; //get box collider
+            float platformLeftEdgePosX =  platform.transform.position.x - (0.5f * boxSize.x);
+            float platformRightEdgePosX = platform.transform.position.x + (0.5f * boxSize.x);
+            float platformUpperEdgePosY = platform.transform.position.y + (0.5f * boxSize.y);
+
+            float spawnPosX = Random.Range(platformLeftEdgePosX, platformRightEdgePosX);
+            generatedSpawnPosition = new Vector3(spawnPosX, platformUpperEdgePosY + 0.5f, 0);
+
+            float dist = Vector3.Distance(generatedSpawnPosition, player.transform.position);
+            if (dist > minDist)
+            {
                 spawnPositionValid = true;
 
             } else {
