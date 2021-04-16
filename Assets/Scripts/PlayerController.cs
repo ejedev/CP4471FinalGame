@@ -71,6 +71,8 @@ public class PlayerController : MonoBehaviour
         {
             Fire();
         }
+
+        if (Math.Abs(transform.position.y) > 100) { Destroy(gameObject); }
     }
 
     private void Fire()
