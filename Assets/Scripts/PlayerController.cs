@@ -142,7 +142,7 @@ public class PlayerController : MonoBehaviour
         {
             deathSound.Play();
             Destroy(gameObject);
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(3);
         }
         Debug.Log(other.gameObject.tag);
     }
