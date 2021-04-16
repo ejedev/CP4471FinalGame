@@ -47,17 +47,6 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameObject[] platformArray = GameObject.FindGameObjectsWithTag("Platform"); 
-        GameObject platform = platformArray[Random.Range(0, platformArray.Length)];
-        Vector3 boxSize = platform.GetComponent<BoxCollider>().bounds.size;
-        float platformLeftEdgePosX =  platform.transform.position.x - (0.5f * boxSize.x);
-        float platformRightEdgePosX = platform.transform.position.x + (0.5f * boxSize.x);
-        float platformUpperEdgePosY = platform.transform.position.y + boxSize.y;
-
-        float spawnPosX = Random.Range(platformLeftEdgePosX, platformRightEdgePosX);
-        
-        Debug.Log("X: " + (player.transform.position.x - spawnPosX));
-        Debug.Log("Y: " + (player.transform.position.y - platformUpperEdgePosY));
         enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         //enemyProjectileCount = GameObject.FindGameObjectsWithTag("EnemyProjectile").Length;
 

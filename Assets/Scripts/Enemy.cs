@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,8 +23,9 @@ public class Enemy : MonoBehaviour
     public void Update()
     {
         ResetZ();
-
-
+        
+        if (System.Math.Abs(transform.position.y) > 50) { Destroy(gameObject); }
+        
 
         //waddle around
         //wait for player
