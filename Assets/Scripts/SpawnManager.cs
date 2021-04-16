@@ -12,6 +12,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject enemyPrefab; //debug single prefab
     //public GameObject powerupPrefab; //powerup
     public GameObject player;
+    public GameObject chickenPrefab;
     public Text levelValue;
     public int enemyCount;
     public int waveNumber = 1;
@@ -37,9 +38,10 @@ public class SpawnManager : MonoBehaviour
     void SpawnEnemyWave(int enemiesToSpawn)
     {
         for (int i = 0; i < enemiesToSpawn; i++)
-        {
-            //Instantiate(enemyPrefab, new Vector3(0, 0, 0), enemyPrefab.transform.rotation);
+        { 
             Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+            Instantiate(chickenPrefab, GenerateSpawnPosition(), chickenPrefab.transform.rotation);
+
         }
 
         finishedSpawning = true;

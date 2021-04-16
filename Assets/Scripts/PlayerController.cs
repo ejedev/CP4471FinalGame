@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
     
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("PlayerBullet") || other.gameObject.CompareTag("Bullet"))
+        if (other.gameObject.CompareTag("PlayerBullet") || other.gameObject.CompareTag("Bullet") ||  other.gameObject.CompareTag("Enemy"))
         {
             deathSound.Play();
             Destroy(gameObject);
