@@ -41,10 +41,11 @@ public class PlayerBullet : MonoBehaviour
     {
         // Do something here with the object that was hit (collider), e.g. collider.gameObject 
 
-        if (collider.gameObject.tag == "Enemy")
-        {
-            Destroy(collider.gameObject); //replace this with death later!!!
-        }
+        Vector3 impactDirection = gameObject.transform.forward; // try doin this via 'direction' set above
+        impactDirection.y = 0;
+        float force = 500f;
+
+        collider.attachedRigidbody.AddForce(impactDirection.normalized * force);
 
         Destroy(gameObject);
        

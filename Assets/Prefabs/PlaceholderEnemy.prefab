@@ -806,6 +806,7 @@ GameObject:
   - component: {fileID: 9072168512994794724}
   - component: {fileID: 97449490136293029}
   - component: {fileID: 5240466710249503674}
+  - component: {fileID: 5782088921013161717}
   m_Layer: 0
   m_Name: PlaceholderEnemy
   m_TagString: Enemy
@@ -879,6 +880,22 @@ CapsuleCollider:
   m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &5782088921013161717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4653781620235132893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99e1fc4d230322ae08dbe1b28f4af5e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  damageAmount: 10
+  hitPoints: 100
+  anim: {fileID: 0}
 --- !u!1 &4716147524768010276
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,6 +22,10 @@ public class Enemy : MonoBehaviour
 
     public void Update()
     {
+        if (player.transform.position.y >= transform.position.y)
+        {
+            transform.LookAt(player.transform);
+        }
         ResetZ();
         
         if (System.Math.Abs(transform.position.y) > 50) { Destroy(gameObject); }
