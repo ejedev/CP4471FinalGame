@@ -38,9 +38,16 @@ public class SpawnManager : MonoBehaviour
     void SpawnEnemyWave(int enemiesToSpawn)
     {
         for (int i = 0; i < enemiesToSpawn; i++)
-        { 
-            Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
-            Instantiate(chickenPrefab, GenerateSpawnPosition(), chickenPrefab.transform.rotation);
+        {
+            switch (Random.Range(0, 2))
+            {
+                case 0:
+                    Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+                    break;
+                case 1:
+                    Instantiate(chickenPrefab, GenerateSpawnPosition(), chickenPrefab.transform.rotation);
+                    break;
+            }
 
         }
 

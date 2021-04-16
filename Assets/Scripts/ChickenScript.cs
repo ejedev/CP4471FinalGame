@@ -18,6 +18,10 @@ public class ChickenScript : MonoBehaviour
     {
         ResetZ();
         if (System.Math.Abs(transform.position.y) > 50) { Destroy(gameObject); }
+        
+        transform.LookAt(player.transform);
+        transform.position += transform.forward * Time.deltaTime;
+        
     }
     
     public void ResetZ()

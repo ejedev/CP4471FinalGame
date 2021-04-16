@@ -1846,6 +1846,8 @@ MonoBehaviour:
   enemyPrefab: {fileID: 4653781620235132893, guid: f235c9d79a3b8b55c878dccbe808a433,
     type: 3}
   player: {fileID: 8296172667701537574}
+  chickenPrefab: {fileID: 1311290861401530, guid: 312b31977ed9b2d48a14849ebb8c7fb3,
+    type: 3}
   levelValue: {fileID: 957448193}
   enemyCount: 0
   waveNumber: 1
