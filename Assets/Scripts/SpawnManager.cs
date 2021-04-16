@@ -18,6 +18,7 @@ public class SpawnManager : MonoBehaviour
     public float chickenCost = 0.5f;
     public float gunmanCost = 2.0f;
     public float minDist = 2.0f;
+    public static int finalScore = 1;
 
 
     private Boolean finishedSpawning = false;
@@ -54,6 +55,7 @@ public class SpawnManager : MonoBehaviour
         {
             //powerup:          Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
             waveNumber++;
+            finalScore = waveNumber;
             levelValue.text = waveNumber.ToString();
             finishedSpawning = false;
             SpawnEnemyWave(waveNumber);

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
@@ -26,7 +27,8 @@ public class GameOver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        TextMesh finalScore = GameObject.Find("ScoreTextValue").GetComponent<TextMesh>();
+        finalScore.text = SpawnManager.finalScore.ToString();
     }
 
     // Update is called once per frame

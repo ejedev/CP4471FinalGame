@@ -537,6 +537,7 @@ GameObject:
   m_Component:
   - component: {fileID: 302029064}
   - component: {fileID: 302029065}
+  - component: {fileID: 302029066}
   m_Layer: 0
   m_Name: GunShot
   m_TagString: Untagged
@@ -654,6 +655,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &302029066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 302029063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac19c25b0996d74a2b58623f81aa8721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music: {fileID: 302029065}
 --- !u!136 &518710231
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1337,6 +1351,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1114830096}
   - component: {fileID: 1114830097}
+  - component: {fileID: 1114830098}
   m_Layer: 0
   m_Name: DeathSound
   m_TagString: Untagged
@@ -1454,6 +1469,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1114830098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114830095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac19c25b0996d74a2b58623f81aa8721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music: {fileID: 1114830097}
 --- !u!4 &1137435943 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: e482b39d7ed22034ca6a61dd145ee82b,
@@ -1470,6 +1498,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1157625528}
   - component: {fileID: 1157625527}
+  - component: {fileID: 1157625529}
   m_Layer: 0
   m_Name: MainMusic
   m_TagString: Untagged
@@ -1587,6 +1616,19 @@ Transform:
   m_Father: {fileID: 125473242}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1157625529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157625526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac19c25b0996d74a2b58623f81aa8721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music: {fileID: 1157625527}
 --- !u!1 &1181376675
 GameObject:
   m_ObjectHideFlags: 0
@@ -2044,6 +2086,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2119458835}
   - component: {fileID: 2119458834}
+  - component: {fileID: 2119458836}
   m_Layer: 0
   m_Name: PauseMusic
   m_TagString: Untagged
@@ -2161,6 +2204,19 @@ Transform:
   m_Father: {fileID: 125473242}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2119458836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119458833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac19c25b0996d74a2b58623f81aa8721, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  music: {fileID: 2119458834}
 --- !u!1001 &2145722708
 PrefabInstance:
   m_ObjectHideFlags: 0
