@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cowboy : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public float walkSpeed = 2.5f;
     public float jumpHeight = 5f;
@@ -79,7 +79,7 @@ public class Cowboy : MonoBehaviour
 
         var go = Instantiate(bulletPrefab);
         go.transform.position = muzzleTransform.position;
-        var bullet = go.GetComponent<Bullet>();
+        var bullet = go.GetComponent<PlayerBullet>();
         bullet.Fire(go.transform.position, muzzleTransform.eulerAngles, gameObject.layer);
     }
 

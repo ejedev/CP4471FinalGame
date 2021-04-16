@@ -1,64 +1,81 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
-    public GameObject placeHolderEnemy;
-    public Text levelValue;
-    private int currentLevel = 1;
-    private int spawnAmount = 1;
-    private int spawnedEnemies = 0;
-    
-    //All locations are X,Y
-    float[,] possibleSpawnLocations = new float[,] {{4.5f,3},{-4.5f,3},{7,3},{-7,3},{6,2},{-6,2},{3,2},{-3,2},{4,6.83f},{-4,6.83f}};
-    
+
+    //public GameObject[] enemyPrefabs; //array of prefabs you can spawn
+    public GameObject enemyPrefab; //debug single prefab
+    //public GameObject powerupPrefab; //powerup
+    public GameObject player;
+    public int enemyCount;
+    public int waveNumber = 1;
+    public float chickenCost = 0.5f;
+    public float gunmanCost = 2.0f;
+    //TODO add budget & pick of prefabs
+
+
+
     // Start is called before the first frame update
     void Start()
     {
-        levelValue.text = currentLevel.ToString();
-        StartCoroutine(EnemySpawner());
+        SpawnEnemyWave(waveNumber);
+        //powerup:          Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
     }
-    
-    IEnumerator EnemySpawner(){
-        while(true)
+
+    void SpawnEnemyWave(int enemiesToSpawn)
+    {
+        for (int i = 0; i < enemiesToSpawn; i++)
         {
-            Debug.Log("TRYING TO SPAWN ENEMY");
-            if (spawnedEnemies < spawnAmount)
-            {
-                Debug.Log("Enemy spawned.");
-                int selectedPostion = Random.Range(0, (possibleSpawnLocations.Length - 1) / 2);
-                Debug.Log(selectedPostion + " ," + possibleSpawnLocations.Length);
-                Instantiate(placeHolderEnemy,
-                    new Vector3(possibleSpawnLocations[selectedPostion, 0], possibleSpawnLocations[selectedPostion, 1],
-                        0), Quaternion.identity);
-                spawnedEnemies += 1;
-            }
-            else
-            {
-                Debug.Log("Enemy not spawned.");
-            }
-            yield return new WaitForSeconds(5);
+            Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (spawnedEnemies == spawnAmount && GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
+        enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        //enemyProjectileCount = GameObject.FindGameObjectsWithTag("EnemyProjectile").Length;
+
+        if (enemyCount == 0)
         {
-            Debug.Log("Conditions met for new level.");
-            currentLevel += 1;
-            spawnedEnemies = 0;
-            spawnAmount = currentLevel;
-            levelValue.text = currentLevel.ToString();
+            //powerup:          Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
+            waveNumber++;
+            SpawnEnemyWave(waveNumber);
         }
-        else
+    }
+
+    //must only be called AFTER platforms are created
+    //gets list of platforms and generates a spawn location (+0.5 y) above a platform, away from the player
+    private Vector3 GenerateSpawnPosition()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        GameObject[] platformArray = GameObject.FindGameObjectsWithTag("Platform");
+        Vector3 playerPosition = player.transform.position;
+        bool spawnPositionValid = false;
+        Vector3 generatedSpawnPosition = new Vector3(0, 0, 0); //default
+
+        while (spawnPositionValid == false)
         {
-            //Debug.Log("Conditions not met for new level.");
+            GameObject platform = platformArray[Random.Range(0, platformArray.Length)]; //get random platform
+            Vector3 boxSize = platform.GetComponent<BoxCollider>().bounds.size; //get box collider
+            float platformLeftEdgePosX =  platform.transform.position.x - (0.5f * boxSize.x);
+            float platformRightEdgePosX = platform.transform.position.x + (0.5f * boxSize.x);
+            float platformUpperEdgePosY = platform.transform.position.y + boxSize.y;
+
+            float spawnPosX = Random.Range(platformLeftEdgePosX, platformRightEdgePosX);
+
+            if (!(player.transform.position.x - spawnPosX <= 1.5) && !(player.transform.position.y - platformUpperEdgePosY <= 1.5)) //if not within 1.5 in either direction
+            {
+                generatedSpawnPosition = new Vector3(spawnPosX, platformUpperEdgePosY + 0.2f, 0);
+                spawnPositionValid = true;
+
+            } else {
+                spawnPositionValid = false;
+            }
         }
+
+        return generatedSpawnPosition;
     }
 }

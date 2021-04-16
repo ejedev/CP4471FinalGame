@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class PlayerBullet : MonoBehaviour
 {
     public float velocity = 20f;
     public float life = 1f;
@@ -40,6 +40,11 @@ public class Bullet : MonoBehaviour
     private void Hit(Vector3 position, Vector3 direction, Vector3 reflected, Collider collider)
     {
         // Do something here with the object that was hit (collider), e.g. collider.gameObject 
+
+        if (collider.gameObject.tag == "Enemy")
+        {
+            Destroy(collider.gameObject); //replace this with death later!!!
+        }
 
         Destroy(gameObject);
        
