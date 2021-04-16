@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -129,6 +131,16 @@ public class PlayerController : MonoBehaviour
         // Look at target IK
         animator.SetLookAtWeight(1);
         animator.SetLookAtPosition(targetTransform.position);
+    }
+    
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("PlayerBullet") || other.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(gameObject);
+            SceneManager.LoadScene(0);
+        }
+        Debug.Log(other.gameObject.tag);
     }
 
 }

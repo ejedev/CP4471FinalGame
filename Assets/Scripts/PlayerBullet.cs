@@ -44,9 +44,8 @@ public class PlayerBullet : MonoBehaviour
         Vector3 impactDirection = gameObject.transform.forward; // try doin this via 'direction' set above
         impactDirection.y = 0;
         float force = 500f;
-
+        Debug.Log(collider);
         collider.attachedRigidbody.AddForce(impactDirection.normalized * force);
-
         Destroy(gameObject);
        
     }
