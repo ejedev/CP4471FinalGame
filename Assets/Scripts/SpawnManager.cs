@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
@@ -11,6 +12,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject enemyPrefab; //debug single prefab
     //public GameObject powerupPrefab; //powerup
     public GameObject player;
+    public Text levelValue;
     public int enemyCount;
     public int waveNumber = 1;
     public float chickenCost = 0.5f;
@@ -24,6 +26,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        levelValue.text = waveNumber.ToString();
         SpawnEnemyWave(waveNumber);
         //powerup:          Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
     }
@@ -32,8 +35,8 @@ public class SpawnManager : MonoBehaviour
     {
         for (int i = 0; i < enemiesToSpawn; i++)
         {
-            Instantiate(enemyPrefab, new Vector3(0, 0, 0), enemyPrefab.transform.rotation);
-            //Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+            //Instantiate(enemyPrefab, new Vector3(0, 0, 0), enemyPrefab.transform.rotation);
+            Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
         }
 
         finishedSpawning = true;
@@ -42,6 +45,17 @@ public class SpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GameObject[] platformArray = GameObject.FindGameObjectsWithTag("Platform"); 
+        GameObject platform = platformArray[Random.Range(0, platformArray.Length)];
+        Vector3 boxSize = platform.GetComponent<BoxCollider>().bounds.size;
+        float platformLeftEdgePosX =  platform.transform.position.x - (0.5f * boxSize.x);
+        float platformRightEdgePosX = platform.transform.position.x + (0.5f * boxSize.x);
+        float platformUpperEdgePosY = platform.transform.position.y + boxSize.y;
+
+        float spawnPosX = Random.Range(platformLeftEdgePosX, platformRightEdgePosX);
+        
+        Debug.Log("X: " + (player.transform.position.x - spawnPosX));
+        Debug.Log("Y: " + (player.transform.position.y - platformUpperEdgePosY));
         enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         //enemyProjectileCount = GameObject.FindGameObjectsWithTag("EnemyProjectile").Length;
 
@@ -49,6 +63,7 @@ public class SpawnManager : MonoBehaviour
         {
             //powerup:          Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
             waveNumber++;
+            levelValue.text = waveNumber.ToString();
             finishedSpawning = false;
             SpawnEnemyWave(waveNumber);
         }
@@ -72,7 +87,8 @@ public class SpawnManager : MonoBehaviour
 
             float spawnPosX = Random.Range(platformLeftEdgePosX, platformRightEdgePosX);
 
-            if (!(player.transform.position.x - spawnPosX <= 1.5) && !(player.transform.position.y - platformUpperEdgePosY <= 1.5)) //if not within 1.5 in either direction
+            //if (!(player.transform.position.x - spawnPosX <= 1.5) && !(player.transform.position.y - platformUpperEdgePosY <= 1.5)) //if not within 1.5 in either direction
+            if (!(spawnPosX - player.transform.position.x <= 1.5) && !(platformUpperEdgePosY - player.transform.position.y <= 1.5))
             {
                 generatedSpawnPosition = new Vector3(spawnPosX, platformUpperEdgePosY + 0.2f, 0);
                 spawnPositionValid = true;
