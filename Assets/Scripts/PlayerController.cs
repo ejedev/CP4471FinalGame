@@ -77,7 +77,13 @@ public class PlayerController : MonoBehaviour
             Fire();
         }
 
-        if (Math.Abs(transform.position.y) > 100) { Destroy(gameObject); }
+
+        if (Math.Abs(transform.position.y) > 100)
+        {
+            
+            Destroy(gameObject);
+            SceneManager.LoadScene(3);
+        }
     }
 
     private void Fire()
