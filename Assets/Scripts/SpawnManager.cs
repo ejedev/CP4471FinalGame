@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class SpawnManager : MonoBehaviour
     public int waveNumber = 1;
     public float chickenCost = 0.5f;
     public float gunmanCost = 2.0f;
+
+    private Boolean finishedSpawning = false;
     //TODO add budget & pick of prefabs
 
 
@@ -28,8 +32,11 @@ public class SpawnManager : MonoBehaviour
     {
         for (int i = 0; i < enemiesToSpawn; i++)
         {
-            Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+            Instantiate(enemyPrefab, new Vector3(0, 0, 0), enemyPrefab.transform.rotation);
+            //Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
         }
+
+        finishedSpawning = true;
     }
 
     // Update is called once per frame
@@ -38,10 +45,11 @@ public class SpawnManager : MonoBehaviour
         enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         //enemyProjectileCount = GameObject.FindGameObjectsWithTag("EnemyProjectile").Length;
 
-        if (enemyCount == 0)
+        if (enemyCount == 0 && finishedSpawning)
         {
             //powerup:          Instantiate(powerupPrefab, GenerateSpawnPosition(), powerupPrefab.transform.rotation);
             waveNumber++;
+            finishedSpawning = false;
             SpawnEnemyWave(waveNumber);
         }
     }
@@ -50,9 +58,7 @@ public class SpawnManager : MonoBehaviour
     //gets list of platforms and generates a spawn location (+0.5 y) above a platform, away from the player
     private Vector3 GenerateSpawnPosition()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        GameObject[] platformArray = GameObject.FindGameObjectsWithTag("Platform");
-        Vector3 playerPosition = player.transform.position;
+        GameObject[] platformArray = GameObject.FindGameObjectsWithTag("Platform"); 
         bool spawnPositionValid = false;
         Vector3 generatedSpawnPosition = new Vector3(0, 0, 0); //default
 

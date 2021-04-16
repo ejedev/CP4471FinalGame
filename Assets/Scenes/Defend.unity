@@ -529,29 +529,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f29a6413f6368e41a2fb7f1352d909a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 2.5
+  walkSpeed: 5.5
   jumpHeight: 5
-  groundCheckTransform: {fileID: 0}
+  groundCheckTransform: {fileID: 830125569}
   groundCheckRadius: 0.2
-  targetTransform: {fileID: 0}
+  targetTransform: {fileID: 1035389738}
   mouseAimMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   groundMask:
     serializedVersion: 2
-    m_Bits: 0
-  bulletPrefab: {fileID: 0}
-  muzzleTransform: {fileID: 0}
+    m_Bits: 512
+  bulletPrefab: {fileID: 3714936309755222211, guid: 520a6e670af073044951a36c35ee0f58,
+    type: 3}
+  muzzleTransform: {fileID: 1443648962}
   recoilCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   recoilDuration: 0.25
   recoilMaxRotation: 45
-  rightLowerArm: {fileID: 0}
-  rightHand: {fileID: 0}
+  rightLowerArm: {fileID: 2053152601838782562}
+  rightHand: {fileID: 3656042007744853099}
 --- !u!1 &688116742
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,6 +1166,7 @@ MonoBehaviour:
   waveNumber: 1
   chickenCost: 0.5
   gunmanCost: 2
+  finishedSpawning: 0
 --- !u!4 &1462384138
 Transform:
   m_ObjectHideFlags: 0

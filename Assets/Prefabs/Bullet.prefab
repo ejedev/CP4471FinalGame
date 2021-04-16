@@ -56,6 +56,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -108,6 +109,7 @@ TrailRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -239,7 +241,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3714936309755222211}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91b47ad1391b23943b7c627de643b2fd, type: 3}
+  m_Script: {fileID: 11500000, guid: c7248c2f7bf509908b71ab7d31111647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 20
