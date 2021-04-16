@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
             transform.LookAt(player.transform);
             anim.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
             anim.SetIKPosition(AvatarIKGoal.RightHand, player.transform.position);
-            if(timer <= 0.3f){
+            if(timer <= 0.6f){
                 timer += Time.deltaTime;
             }
             else{

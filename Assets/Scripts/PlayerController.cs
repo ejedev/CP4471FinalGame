@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
+    public AudioSource gunShot;
     public float walkSpeed = 2.5f;
     public float jumpHeight = 5f;
 
@@ -71,6 +72,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
+            gunShot.Play();
             Fire();
         }
 
