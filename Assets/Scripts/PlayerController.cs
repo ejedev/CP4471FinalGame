@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public AudioSource gunShot;
     public float walkSpeed = 2.5f;
     public float jumpHeight = 5f;
+    public AudioSource deathSound;
 
     public Transform groundCheckTransform;
     public float groundCheckRadius = 0.2f;
@@ -139,6 +140,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PlayerBullet") || other.gameObject.CompareTag("Bullet"))
         {
+            deathSound.Play();
             Destroy(gameObject);
             SceneManager.LoadScene(0);
         }
