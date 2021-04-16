@@ -23,8 +23,9 @@ public class Enemy : MonoBehaviour
     public void Update()
     {
         ResetZ();
-
-
+        
+        if (Math.Abs(transform.position.y) > 50) { Destroy(gameObject); }
+        
 
         //waddle around
         //wait for player
