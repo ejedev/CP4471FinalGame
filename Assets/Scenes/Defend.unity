@@ -530,7 +530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 5.5
-  jumpHeight: 5
+  jumpHeight: 8
   groundCheckTransform: {fileID: 830125569}
   groundCheckRadius: 0.2
   targetTransform: {fileID: 1035389738}
@@ -1162,11 +1162,11 @@ MonoBehaviour:
   enemyPrefab: {fileID: 4653781620235132893, guid: f235c9d79a3b8b55c878dccbe808a433,
     type: 3}
   player: {fileID: 8296172667701537574}
+  levelValue: {fileID: 957448193}
   enemyCount: 0
   waveNumber: 1
   chickenCost: 0.5
   gunmanCost: 2
-  finishedSpawning: 0
 --- !u!4 &1462384138
 Transform:
   m_ObjectHideFlags: 0
